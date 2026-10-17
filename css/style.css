@@ -1,0 +1,1127 @@
+/* ==========================================================================
+   EduMatrix — Global Stylesheet
+   Design system: "Editorial Academic" (see DESIGN.md)
+   Stack: Bootstrap 5 (grid, components, utilities) + this file (brand identity)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   Keep every brand value here. Nothing below this block should hardcode
+   a hex color, font size, radius, or spacing value that already has a
+   variable — reuse the variable instead.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Color: surfaces */
+  --em-surface: #fbf9f8;
+  --em-surface-dim: #dbdad9;
+  --em-surface-bright: #fbf9f8;
+  --em-surface-lowest: #ffffff;
+  --em-surface-low: #f5f3f3;
+  --em-surface-container: #efeded;
+  --em-surface-high: #e9e8e7;
+  --em-surface-highest: #e4e2e2;
+
+  /* Color: text */
+  --em-on-surface: #1b1c1c;
+  --em-on-surface-variant: #4e4634;
+  --em-inverse-surface: #303031;
+  --em-inverse-on-surface: #f2f0f0;
+
+  /* Color: outline */
+  --em-outline: #807661;
+  --em-outline-variant: #d1c5ad;
+
+  /* Color: brand / primary (Luxury Yellow) */
+  --em-primary: #755b00;
+  --em-on-primary: #ffffff;
+  --em-primary-container: #f4c430;
+  --em-on-primary-container: #695200;
+
+  /* Color: secondary (neutral grey) */
+  --em-secondary: #5f5e5e;
+  --em-on-secondary: #ffffff;
+  --em-secondary-container: #e5e2e1;
+  --em-on-secondary-container: #656464;
+
+  /* Color: tertiary (used sparingly for informational accents) */
+  --em-tertiary: #00677e;
+  --em-on-tertiary: #ffffff;
+  --em-tertiary-container: #58d9ff;
+  --em-on-tertiary-container: #005d72;
+
+  /* Color: state */
+  --em-error: #ba1a1a;
+  --em-on-error: #ffffff;
+  --em-error-container: #ffdad6;
+  --em-on-error-container: #93000a;
+
+  /* Color: quick-reference brand aliases (per project brand sheet) */
+  --em-luxury-yellow: #f4c430;
+  --em-deep-black: #0b0b0b;
+  --em-soft-white: #fafaf8;
+  --em-white: #ffffff;
+  --em-grey: #6b6b6b;
+  --em-border: #e5e5e5;
+
+  /* Typography */
+  --em-font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --em-fs-display-lg: 64px;
+  --em-fs-headline-lg: 40px;
+  --em-fs-headline-lg-mobile: 32px;
+  --em-fs-headline-md: 24px;
+  --em-fs-body-lg: 18px;
+  --em-fs-body-md: 16px;
+  --em-fs-label-md: 14px;
+  --em-fs-caption: 12px;
+
+  /* Radius */
+  --em-radius-sm: 0.25rem;
+  --em-radius: 0.5rem;
+  --em-radius-md: 0.75rem;
+  --em-radius-lg: 1rem;
+  --em-radius-xl: 1.5rem;
+  --em-radius-full: 9999px;
+
+  /* Spacing */
+  --em-space-base: 8px;
+  --em-container-max: 1280px;
+  --em-gutter: 24px;
+  --em-margin-desktop: 64px;
+  --em-margin-mobile: 20px;
+  --em-section-gap: 120px;
+
+  /* Elevation */
+  --em-shadow-1: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --em-shadow-2: 0 12px 32px rgba(0, 0, 0, 0.08);
+
+  /* Motion */
+  --em-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --em-duration-sm: 200ms;
+  --em-duration-md: 300ms;
+  --em-duration-lg: 600ms;
+}
+
+/* Dark mode tokens — toggled via [data-theme="dark"] on <html> (see main.js) */
+[data-theme="dark"] {
+  --em-surface: #1b1c1c;
+  --em-surface-dim: #131414;
+  --em-surface-bright: #232424;
+  --em-surface-lowest: #0b0b0b;
+  --em-surface-low: #1f2020;
+  --em-surface-container: #262726;
+  --em-surface-high: #313231;
+  --em-surface-highest: #3c3d3b;
+
+  --em-on-surface: #f2f0f0;
+  --em-on-surface-variant: #d1c5ad;
+  --em-inverse-surface: #e4e2e2;
+  --em-inverse-on-surface: #1b1c1c;
+
+  --em-outline: #9a9078;
+  --em-outline-variant: #4e4634;
+
+  --em-on-primary-container: #ffdf90;
+  --em-primary-container: #f4c430;
+}
+
+/* --------------------------------------------------------------------------
+   2. BASE
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--em-font-body);
+  font-size: var(--em-fs-body-md);
+  line-height: 1.6;
+  color: var(--em-on-surface);
+  background-color: var(--em-surface);
+  transition: background-color var(--em-duration-md) var(--em-ease),
+              color var(--em-duration-md) var(--em-ease);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background-color: var(--em-primary-container);
+  color: var(--em-on-primary-container);
+}
+
+.container-em {
+  width: 100%;
+  max-width: var(--em-container-max);
+  margin-inline: auto;
+  padding-inline: var(--em-margin-mobile);
+}
+
+@media (min-width: 992px) {
+  .container-em {
+    padding-inline: var(--em-margin-desktop);
+  }
+}
+
+.section-em {
+  padding-block: 64px;
+}
+
+@media (min-width: 992px) {
+  .section-em {
+    padding-block: var(--em-section-gap);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+.text-display-lg {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .text-display-lg {
+    font-size: var(--em-fs-display-lg);
+    line-height: 1.1;
+  }
+}
+
+.text-headline-lg {
+  font-size: var(--em-fs-headline-lg-mobile);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  .text-headline-lg {
+    font-size: var(--em-fs-headline-lg);
+  }
+}
+
+.text-headline-md {
+  font-size: var(--em-fs-headline-md);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.text-body-lg {
+  font-size: var(--em-fs-body-lg);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.text-label-md {
+  font-size: var(--em-fs-label-md);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.text-caption {
+  font-size: var(--em-fs-caption);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.text-muted-em {
+  color: var(--em-on-surface-variant);
+}
+
+/* --------------------------------------------------------------------------
+   4. NAVBAR
+   -------------------------------------------------------------------------- */
+.em-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background-color: rgba(251, 249, 248, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--em-duration-md) var(--em-ease),
+              box-shadow var(--em-duration-md) var(--em-ease);
+}
+
+[data-theme="dark"] .em-navbar {
+  background-color: rgba(11, 11, 11, 0.85);
+}
+
+.em-navbar.is-scrolled {
+  border-bottom-color: var(--em-border);
+  box-shadow: var(--em-shadow-1);
+}
+
+.em-navbar__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--em-radius-sm);
+  object-fit: contain;
+}
+
+.em-navbar__brand {
+  font-size: var(--em-fs-headline-md);
+  font-weight: 700;
+  color: var(--em-on-surface);
+}
+
+.em-nav-link {
+  color: var(--em-on-surface-variant);
+  font-size: var(--em-fs-body-md);
+  font-weight: 500;
+  padding-block: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color var(--em-duration-sm) var(--em-ease),
+              border-color var(--em-duration-sm) var(--em-ease);
+}
+
+.em-nav-link:hover,
+.em-nav-link:focus-visible {
+  color: var(--em-primary);
+}
+
+.em-nav-link.active {
+  color: var(--em-primary);
+  font-weight: 700;
+  border-bottom-color: var(--em-primary);
+}
+
+.em-nav-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--em-radius-full);
+  color: var(--em-on-surface);
+  transition: background-color var(--em-duration-sm) var(--em-ease);
+}
+
+.em-nav-icon-btn:hover,
+.em-nav-icon-btn:focus-visible {
+  background-color: var(--em-surface-container-high, var(--em-surface-high));
+  color: var(--em-on-surface);
+}
+
+.em-nav-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: var(--em-radius-full);
+  background-color: var(--em-primary-container);
+  color: var(--em-on-primary-container);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   14. RATING STARS (course details, reviews)
+   -------------------------------------------------------------------------- */
+.em-star-rating {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--em-primary);
+}
+
+.em-star-rating .material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   15. STICKY PURCHASE CARD (course-details.html)
+   -------------------------------------------------------------------------- */
+.em-purchase-card {
+  background-color: var(--em-surface-lowest);
+  border-radius: var(--em-radius-xl);
+  padding: 28px;
+}
+
+@media (min-width: 992px) {
+  .em-purchase-card {
+    position: sticky;
+    top: 96px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   16. ACCORDION (curriculum) — restyled to match the editorial system
+   instead of Bootstrap's default blue focus/active treatment
+   -------------------------------------------------------------------------- */
+.em-accordion .accordion-item {
+  border: 1px solid var(--em-outline-variant);
+  border-radius: var(--em-radius) !important;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.em-accordion .accordion-button {
+  font-weight: 600;
+  color: var(--em-on-surface);
+  background-color: var(--em-surface-lowest);
+  box-shadow: none;
+}
+
+.em-accordion .accordion-button:not(.collapsed) {
+  background-color: var(--em-surface-low);
+  color: var(--em-on-surface);
+  box-shadow: none;
+}
+
+.em-accordion .accordion-button:focus {
+  box-shadow: 0 0 0 2px var(--em-deep-black);
+}
+
+.em-accordion .accordion-button::after {
+  filter: none;
+}
+
+/* --------------------------------------------------------------------------
+   17. CART / SUMMARY ROWS (cart.html, checkout.html)
+   -------------------------------------------------------------------------- */
+.em-cart-item {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--em-outline-variant);
+}
+
+.em-cart-item__thumb {
+  width: 120px;
+  height: 80px;
+  border-radius: var(--em-radius);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.em-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 8px;
+  font-size: var(--em-fs-body-md);
+}
+
+.em-summary-row--total {
+  font-size: var(--em-fs-headline-md);
+  font-weight: 700;
+  border-top: 1px solid var(--em-outline-variant);
+  margin-top: 8px;
+  padding-top: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   18. PAYMENT METHOD TOGGLES (checkout.html)
+   Bootstrap's .btn-check hides the actual radio input; we style the
+   associated <label class="btn-em-secondary"> to show a selected state.
+   -------------------------------------------------------------------------- */
+.btn-check:checked + .btn-em-secondary {
+  background-color: var(--em-primary-container);
+  border-color: var(--em-primary-container);
+  color: var(--em-on-primary-container);
+}
+
+.btn-check:focus-visible + .btn-em-secondary {
+  outline: 2px solid var(--em-deep-black);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. BUTTONS
+   -------------------------------------------------------------------------- */
+.btn-em-primary,
+.btn-em-secondary,
+.btn-em-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 28px;
+  border-radius: var(--em-radius);
+  font-size: var(--em-fs-label-md);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  transition: transform var(--em-duration-sm) var(--em-ease),
+              box-shadow var(--em-duration-sm) var(--em-ease),
+              opacity var(--em-duration-sm) var(--em-ease),
+              background-color var(--em-duration-sm) var(--em-ease);
+}
+
+.btn-em-primary {
+  background-color: var(--em-primary-container);
+  color: var(--em-on-primary-container);
+  box-shadow: var(--em-shadow-2);
+}
+
+.btn-em-primary:hover {
+  opacity: 0.92;
+  color: var(--em-on-primary-container);
+}
+
+.btn-em-secondary {
+  background-color: transparent;
+  color: var(--em-on-surface);
+  border-color: var(--em-outline);
+}
+
+.btn-em-secondary:hover {
+  border-color: var(--em-on-surface);
+  color: var(--em-on-surface);
+}
+
+.btn-em-ghost {
+  background-color: transparent;
+  color: var(--em-on-surface);
+}
+
+.btn-em-primary:active,
+.btn-em-secondary:active,
+.btn-em-ghost:active {
+  transform: scale(0.97);
+}
+
+.btn-em-primary:focus-visible,
+.btn-em-secondary:focus-visible,
+.btn-em-ghost:focus-visible {
+  outline: 2px solid var(--em-deep-black);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   6. SHADOWS / ELEVATION
+   -------------------------------------------------------------------------- */
+.shadow-em-1 {
+  box-shadow: var(--em-shadow-1);
+  border: 1px solid var(--em-border);
+}
+
+.shadow-em-2 {
+  box-shadow: var(--em-shadow-1);
+  border: 1px solid var(--em-border);
+  transition: box-shadow var(--em-duration-md) var(--em-ease),
+              transform var(--em-duration-md) var(--em-ease);
+}
+
+.shadow-em-2:hover {
+  box-shadow: var(--em-shadow-2);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   7. HERO
+   -------------------------------------------------------------------------- */
+.em-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  padding-block: 64px;
+  overflow: hidden;
+}
+
+.em-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.08;
+  background-size: cover;
+  background-position: center;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.em-hero__content {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: em-fade-up var(--em-duration-lg) var(--em-ease) forwards;
+}
+
+.em-stat-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background-color: var(--em-surface-lowest);
+  border-radius: var(--em-radius-lg);
+  box-shadow: var(--em-shadow-2);
+  opacity: 0;
+  animation: em-fade-up var(--em-duration-lg) var(--em-ease) forwards;
+}
+
+.em-stat-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--em-radius-full);
+  background-color: var(--em-surface-high);
+  color: var(--em-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.em-stat-card--students {
+  top: 8%;
+  right: 0;
+  animation-delay: 0.3s;
+}
+
+.em-stat-card--courses {
+  bottom: 12%;
+  right: 15%;
+  animation-delay: 0.5s;
+}
+
+@keyframes em-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. TRUST STRIP
+   -------------------------------------------------------------------------- */
+.em-trust-strip {
+  padding-block: 40px;
+  border-top: 1px solid var(--em-outline-variant);
+  border-bottom: 1px solid var(--em-outline-variant);
+}
+
+.em-trust-strip__mark {
+  font-size: var(--em-fs-headline-md);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--em-on-surface-variant);
+  filter: grayscale(1);
+  opacity: 0.6;
+  transition: opacity var(--em-duration-md) var(--em-ease),
+              filter var(--em-duration-md) var(--em-ease);
+}
+
+.em-trust-strip:hover .em-trust-strip__mark {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   9. CATEGORY / DISCIPLINE CARDS
+   -------------------------------------------------------------------------- */
+.em-category-card {
+  background-color: var(--em-surface-lowest);
+  border-radius: var(--em-radius-xl);
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: box-shadow var(--em-duration-md) var(--em-ease),
+              transform var(--em-duration-md) var(--em-ease);
+}
+
+.em-category-card:hover,
+.em-category-card:focus-visible {
+  box-shadow: var(--em-shadow-2);
+  transform: translateY(-2px);
+}
+
+.em-category-card__icon {
+  width: 64px;
+  height: 64px;
+  margin-inline: auto;
+  border-radius: var(--em-radius-full);
+  background-color: var(--em-surface-low);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: background-color var(--em-duration-md) var(--em-ease),
+              color var(--em-duration-md) var(--em-ease);
+}
+
+.em-category-card:hover .em-category-card__icon {
+  background-color: var(--em-primary-container);
+  color: var(--em-on-primary-container);
+}
+
+/* --------------------------------------------------------------------------
+   10. COURSE CARDS
+   -------------------------------------------------------------------------- */
+.em-course-card {
+  background-color: var(--em-surface-lowest);
+  border-radius: var(--em-radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow var(--em-duration-md) var(--em-ease),
+              transform var(--em-duration-md) var(--em-ease);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.em-course-card:hover,
+.em-course-card:focus-within {
+  box-shadow: var(--em-shadow-2);
+  transform: translateY(-2px);
+}
+
+.em-course-card__media {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.em-course-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--em-ease);
+}
+
+.em-course-card:hover .em-course-card__media img {
+  transform: scale(1.05);
+}
+
+.em-course-card__badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: rgba(251, 249, 248, 0.9);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--em-outline-variant);
+  border-radius: var(--em-radius-full);
+  padding: 4px 12px;
+  font-size: var(--em-fs-label-md);
+  font-weight: 600;
+}
+
+.em-course-card__wishlist {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--em-radius-full);
+  background-color: rgba(251, 249, 248, 0.9);
+  border: 1px solid var(--em-outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--em-on-surface);
+  transition: color var(--em-duration-sm) var(--em-ease),
+              transform var(--em-duration-sm) var(--em-ease);
+}
+
+.em-course-card__wishlist:hover {
+  transform: scale(1.08);
+}
+
+.em-course-card__wishlist.is-active {
+  color: var(--em-error);
+}
+
+.em-course-card__body {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.em-course-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  color: var(--em-on-surface-variant);
+}
+
+.em-course-card__rating .material-symbols-outlined {
+  color: var(--em-primary);
+  font-size: 18px;
+}
+
+.em-course-card__title {
+  font-size: var(--em-fs-headline-md);
+  font-weight: 600;
+  margin-bottom: 24px;
+  display: -webkit-box;
+  
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.em-course-card__footer {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--em-outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.em-course-card__instructor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.em-course-card__instructor img {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--em-radius-full);
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.em-course-card__price {
+  font-size: var(--em-fs-headline-md);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   11. FOOTER
+   -------------------------------------------------------------------------- */
+.em-footer {
+  background-color: var(--em-surface-lowest);
+  border-top: 1px solid var(--em-outline-variant);
+  margin-top: var(--em-section-gap);
+}
+
+.em-footer__heading {
+  font-size: var(--em-fs-label-md);
+  font-weight: 600;
+  color: var(--em-on-surface);
+  margin-bottom: 8px;
+}
+
+.em-footer__link {
+  color: var(--em-secondary);
+  font-size: var(--em-fs-body-md);
+  transition: color var(--em-duration-sm) var(--em-ease);
+}
+
+.em-footer__link:hover {
+  color: var(--em-primary);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   12. SCROLL REVEAL (progressive enhancement — see main.js)
+   -------------------------------------------------------------------------- */
+.em-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--em-duration-lg) var(--em-ease),
+              transform var(--em-duration-lg) var(--em-ease);
+}
+
+.em-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   13. REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .em-hero__content,
+  .em-stat-card,
+  .em-reveal {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .em-course-card__media img,
+  .shadow-em-2,
+  .em-category-card,
+  .btn-em-primary,
+  .btn-em-secondary,
+  .btn-em-ghost {
+    transition: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. NAV ICON BUTTONS + BADGES (wishlist/cart icons in navbar)
+   -------------------------------------------------------------------------- */
+.em-nav-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--em-radius-full);
+  color: var(--em-on-surface);
+  transition: background-color var(--em-duration-sm) var(--em-ease);
+}
+
+.em-nav-icon-btn:hover,
+.em-nav-icon-btn:focus-visible {
+  background-color: var(--em-surface-container-high, var(--em-surface-high));
+  color: var(--em-on-surface);
+}
+
+.em-nav-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: var(--em-radius-full);
+  background-color: var(--em-primary-container);
+  color: var(--em-on-primary-container);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   15. RATING STARS (course details, reviews, mentor cards)
+   -------------------------------------------------------------------------- */
+.em-star-rating {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--em-primary);
+}
+
+.em-star-rating .material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   16. STICKY PURCHASE CARD (course-details.html)
+   -------------------------------------------------------------------------- */
+.em-purchase-card {
+  background-color: var(--em-surface-lowest);
+  border-radius: var(--em-radius-xl);
+  padding: 28px;
+}
+
+@media (min-width: 992px) {
+  .em-purchase-card {
+    position: sticky;
+    top: 96px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   17. ACCORDION (curriculum, FAQ) — restyled to match the editorial system
+   instead of Bootstrap's default blue focus/active treatment
+   -------------------------------------------------------------------------- */
+.em-accordion .accordion-item {
+  border: 1px solid var(--em-outline-variant);
+  border-radius: var(--em-radius) !important;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.em-accordion .accordion-button {
+  font-weight: 600;
+  color: var(--em-on-surface);
+  background-color: var(--em-surface-lowest);
+  box-shadow: none;
+}
+
+.em-accordion .accordion-button:not(.collapsed) {
+  background-color: var(--em-surface-low);
+  color: var(--em-on-surface);
+  box-shadow: none;
+}
+
+.em-accordion .accordion-button:focus {
+  box-shadow: 0 0 0 2px var(--em-deep-black);
+}
+
+.em-accordion .accordion-button::after {
+  filter: none;
+}
+
+/* --------------------------------------------------------------------------
+   18. CART / SUMMARY ROWS + PAYMENT TOGGLE (cart, checkout)
+   -------------------------------------------------------------------------- */
+.em-cart-item {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--em-outline-variant);
+}
+
+.em-cart-item__thumb {
+  width: 120px;
+  height: 80px;
+  border-radius: var(--em-radius);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.em-summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 8px;
+  font-size: var(--em-fs-body-md);
+}
+
+.em-summary-row--total {
+  font-size: var(--em-fs-headline-md);
+  font-weight: 700;
+  border-top: 1px solid var(--em-outline-variant);
+  margin-top: 8px;
+  padding-top: 16px;
+}
+
+.btn-check:checked + .btn-em-secondary {
+  background-color: var(--em-primary-container);
+  border-color: var(--em-primary-container);
+  color: var(--em-on-primary-container);
+}
+
+.btn-check:focus-visible + .btn-em-secondary {
+  outline: 2px solid var(--em-deep-black);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   19. INSTRUCTOR AREA
+   -------------------------------------------------------------------------- */
+.em-instructor-nav {
+  background-color: var(--em-inverse-surface);
+  color: var(--em-inverse-on-surface);
+}
+
+.em-instructor-nav .em-nav-link {
+  color: rgba(242, 240, 240, 0.72);
+}
+
+.em-instructor-nav .em-nav-link:hover,
+.em-instructor-nav .em-nav-link.active {
+  color: var(--em-inverse-on-surface);
+}
+
+.em-instructor-nav .em-nav-link.active {
+  border-bottom-color: var(--em-primary-container);
+}
+
+.em-instructor-nav .em-navbar__brand {
+  color: var(--em-inverse-on-surface);
+}
+
+.em-stat-tile {
+  background-color: var(--em-surface-lowest);
+  border-radius: var(--em-radius-lg);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.em-stat-tile__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--em-radius-full);
+  background-color: var(--em-primary-container);
+  color: var(--em-on-primary-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.em-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  height: 180px;
+  padding-top: 12px;
+}
+
+.em-bar-chart__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.em-bar-chart__bar {
+  width: 100%;
+  max-width: 40px;
+  background-color: var(--em-primary-container);
+  border-radius: var(--em-radius-sm) var(--em-radius-sm) 0 0;
+  transition: height 500ms var(--em-ease);
+}
+
+.em-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--em-radius-full);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.em-status-badge--published {
+  background-color: #e3f3e1;
+  color: #276221;
+}
+
+.em-status-badge--draft {
+  background-color: var(--em-surface-container-high, var(--em-surface-high));
+  color: var(--em-on-surface-variant);
+}
+
+.em-instructor-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.em-instructor-table th {
+  text-align: left;
+  font-size: var(--em-fs-label-md);
+  font-weight: 600;
+  color: var(--em-on-surface-variant);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--em-outline-variant);
+}
+
+.em-instructor-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--em-outline-variant);
+  font-size: var(--em-fs-body-md);
+  vertical-align: middle;
+}
+
+.em-instructor-table tr:last-child td {
+  border-bottom: none;
+}
