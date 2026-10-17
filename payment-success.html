@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Successful | EduMatrix</title>
+  <meta name="description" content="Your EduMatrix purchase was successful." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .icon-fill {
+      font-variation-settings: 'FILL' 1;
+    }
+
+    /* Success checkmark — a small, restrained draw-on animation.
+       Respects prefers-reduced-motion via the global rule in style.css
+       plus the explicit override below. */
+    .em-success-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background-color: var(--em-primary-container);
+      color: var(--em-on-primary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-inline: auto;
+      opacity: 0;
+      transform: scale(0.85);
+      animation: em-success-pop 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 150ms forwards;
+    }
+
+    .em-success-icon .material-symbols-outlined {
+      font-size: 44px;
+    }
+
+    @keyframes em-success-pop {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .em-success-icon {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 p-2 bg-dark text-white rounded" href="#main-content">Skip to main content</a>
+
+  <!-- ==========================================================================
+       NAVBAR (minimal)
+       ========================================================================== -->
+  <nav class="em-navbar navbar py-3" aria-label="Primary">
+    <div class="container-em d-flex align-items-center justify-content-between">
+      <a class="d-flex align-items-center gap-2 navbar-brand m-0" href="index.html">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5Pb0EobuatTsQMDZTx5XgjDW9uTbyJ907jWr3msBRh9Ezd9T4uKU3JIr9r1YYktzOkGW6n9Ji2fBypYG2phL3iJlDqv8UzhbnKXdcLn9ByvvvrpT13YYmp4ZDZFktNeIlXqTxso5eckpXp1oj8GmB-zbbIIyb4-tIf0RodOPqmo3jdZWuZT2cza8roe4fcHZPWK6Rs3nTW2eKBLL3PJneDhGTJzHdVKrRfPlZV-ruCqmR2xg_vOXZ"
+             alt="EduMatrix logo"
+             class="em-navbar__logo" />
+        <span class="em-navbar__brand">EduMatrix</span>
+      </a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <div class="container-em">
+
+      <!-- Shown if there's no valid order in the URL/localStorage -->
+      <section id="orderNotFoundState" class="text-center py-5 d-none">
+        <span class="material-symbols-outlined mb-3" style="font-size: 48px; color: var(--em-outline);" aria-hidden="true">receipt_long</span>
+        <h1 class="text-headline-md mb-2">We couldn't find that order</h1>
+        <p class="text-body-md text-muted-em mb-4">Check your dashboard for your purchase history.</p>
+        <a href="dashboard.html" class="btn-em-primary">Go to Dashboard</a>
+      </section>
+
+      <section id="successContent" class="d-none" style="max-width: 680px; margin-inline: auto;">
+        <div class="text-center py-5">
+          <div class="em-success-icon mb-4">
+            <span class="material-symbols-outlined icon-fill" aria-hidden="true">check</span>
+          </div>
+          <h1 class="text-headline-lg mb-2">Payment Successful</h1>
+          <p class="text-body-lg text-muted-em mb-0">Thank you — your courses are ready in your dashboard.</p>
+        </div>
+
+        <div class="shadow-em-1 rounded-4 p-4 mb-4" style="border-radius: var(--em-radius-xl);">
+          <div class="row g-3 mb-4">
+            <div class="col-6">
+              <p class="text-caption text-muted-em mb-1">Order Number</p>
+              <p class="text-body-md m-0" id="orderNumber" style="font-weight: 600;">—</p>
+            </div>
+            <div class="col-6">
+              <p class="text-caption text-muted-em mb-1">Date</p>
+              <p class="text-body-md m-0" id="orderDate" style="font-weight: 600;">—</p>
+            </div>
+            <div class="col-6">
+              <p class="text-caption text-muted-em mb-1">Payment Method</p>
+              <p class="text-body-md m-0" id="orderPaymentMethod" style="font-weight: 600;">—</p>
+            </div>
+            <div class="col-6">
+              <p class="text-caption text-muted-em mb-1">Amount Paid</p>
+              <p class="text-body-md m-0" id="orderAmount" style="font-weight: 600;">—</p>
+            </div>
+          </div>
+
+          <hr style="border-color: var(--em-outline-variant);" />
+
+          <p class="text-label-md text-uppercase mt-4 mb-3" style="letter-spacing: 0.04em;">Courses Purchased</p>
+          <div id="orderItemsList" class="d-flex flex-column gap-3"></div>
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row gap-3">
+          <a href="learning.html" id="startLearningBtn" class="btn-em-primary flex-grow-1 text-center">Start Learning</a>
+          <a href="dashboard.html" class="btn-em-secondary flex-grow-1 text-center">Go to Dashboard</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER (minimal)
+       ========================================================================== -->
+  <footer class="em-footer">
+    <div class="container-em py-5 text-center">
+      <p class="text-caption text-muted-em m-0">© 2026 EduMatrix. Editorial Excellence in Learning.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/courses-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/payment-success.js"></script>
+</body>
+</html>

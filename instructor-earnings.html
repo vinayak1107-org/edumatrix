@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earnings | EduMatrix Instructor</title>
+  <meta name="description" content="Track your EduMatrix earnings and payout history." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .icon-fill {
+      font-variation-settings: 'FILL' 1;
+    }
+  </style>
+</head>
+<body>
+
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 p-2 bg-dark text-white rounded" href="#main-content">Skip to main content</a>
+
+  <nav class="em-navbar em-instructor-nav navbar navbar-expand-md py-3" aria-label="Instructor">
+    <div class="container-em d-flex align-items-center justify-content-between">
+      <a class="d-flex align-items-center gap-2 navbar-brand m-0" href="instructor-dashboard.html">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5Pb0EobuatTsQMDZTx5XgjDW9uTbyJ907jWr3msBRh9Ezd9T4uKU3JIr9r1YYktzOkGW6n9Ji2fBypYG2phL3iJlDqv8UzhbnKXdcLn9ByvvvrpT13YYmp4ZDZFktNeIlXqTxso5eckpXp1oj8GmB-zbbIIyb4-tIf0RodOPqmo3jdZWuZT2cza8roe4fcHZPWK6Rs3nTW2eKBLL3PJneDhGTJzHdVKrRfPlZV-ruCqmR2xg_vOXZ"
+             alt="EduMatrix logo"
+             class="em-navbar__logo" />
+        <span class="em-navbar__brand">EduMatrix</span>
+        <span class="text-caption" style="background-color: var(--em-primary-container); color: var(--em-on-primary-container); padding: 2px 8px; border-radius: var(--em-radius-full); font-weight: 700;">INSTRUCTOR</span>
+      </a>
+
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse flex-grow-0" id="primaryNav">
+        <ul class="navbar-nav gap-md-4 mt-3 mt-md-0 align-items-md-center">
+          <li class="nav-item"><a class="em-nav-link nav-link" href="instructor-dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="em-nav-link nav-link" href="instructor-courses.html">My Courses</a></li>
+          <li class="nav-item"><a class="em-nav-link nav-link" href="create-course.html">Create Course</a></li>
+          <li class="nav-item"><a class="em-nav-link nav-link" href="instructor-analytics.html">Analytics</a></li>
+          <li class="nav-item"><a class="em-nav-link nav-link active" href="instructor-earnings.html" aria-current="page">Earnings</a></li>
+        </ul>
+      </div>
+
+      <a href="index.html" class="text-label-md d-none d-md-inline-flex align-items-center gap-1" style="color: var(--em-inverse-on-surface); opacity: 0.8;">
+        <span class="material-symbols-outlined" style="font-size: 18px;" aria-hidden="true">logout</span>
+        Exit to Student View
+      </a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <div class="container-em">
+
+      <section class="pt-5 pb-4">
+        <h1 class="text-headline-lg mb-1">Earnings</h1>
+        <p class="text-body-md text-muted-em m-0">Your revenue and payout history on EduMatrix.</p>
+      </section>
+
+      <!-- Balance + stats -->
+      <section class="pb-5">
+        <div class="row g-3">
+          <div class="col-12 col-md-4">
+            <div class="shadow-em-2 rounded-4 p-4" style="border-radius: var(--em-radius-xl); background-color: var(--em-surface-lowest);">
+              <p class="text-caption text-muted-em mb-1">Available Balance</p>
+              <p class="text-display-lg m-0" style="font-size: 36px;" id="availableBalance">$0</p>
+              <button type="button" class="btn-em-primary w-100 mt-3" id="requestPayoutBtn">Request Payout</button>
+            </div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="em-stat-tile h-100">
+              <div class="em-stat-tile__icon"><span class="material-symbols-outlined icon-fill" aria-hidden="true">payments</span></div>
+              <div>
+                <p class="text-headline-md m-0" id="lifetimeEarnings">$0</p>
+                <p class="text-caption text-muted-em m-0">Lifetime Earnings</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="em-stat-tile h-100">
+              <div class="em-stat-tile__icon"><span class="material-symbols-outlined icon-fill" aria-hidden="true">receipt_long</span></div>
+              <div>
+                <p class="text-headline-md m-0" id="pendingPayout">$0</p>
+                <p class="text-caption text-muted-em m-0">Pending Payout</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p id="payoutMessage" class="text-caption mt-3 mb-0" style="display: none; color: var(--em-primary);"></p>
+      </section>
+
+      <!-- Revenue by course -->
+      <section class="pb-5">
+        <h2 class="text-headline-md mb-3">Revenue by Course</h2>
+        <div class="shadow-em-1 rounded-4 overflow-hidden" style="border-radius: var(--em-radius-xl);">
+          <div class="table-responsive">
+            <table class="em-instructor-table">
+              <thead>
+                <tr>
+                  <th>Course</th>
+                  <th>Price</th>
+                  <th>Students</th>
+                  <th>Revenue</th>
+                </tr>
+              </thead>
+              <tbody id="revenueByCourseBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Payout history -->
+      <section class="pb-5">
+        <h2 class="text-headline-md mb-3">Payout History</h2>
+        <div class="shadow-em-1 rounded-4 overflow-hidden" style="border-radius: var(--em-radius-xl);">
+          <div class="table-responsive">
+            <table class="em-instructor-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Method</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="payoutHistoryBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/courses-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/instructor-data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/instructor-earnings.js"></script>
+</body>
+</html>

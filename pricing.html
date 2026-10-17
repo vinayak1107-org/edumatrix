@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing | EduMatrix</title>
+  <meta name="description" content="Simple, transparent pricing for individual learners and teams on EduMatrix." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .em-plan-card {
+      background-color: var(--em-surface-lowest);
+      border-radius: var(--em-radius-xl);
+      padding: 40px 32px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border: 1px solid var(--em-border);
+    }
+    .em-plan-card--featured {
+      border: 2px solid var(--em-primary-container);
+      box-shadow: var(--em-shadow-2);
+    }
+    .em-plan-card__badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--em-primary-container);
+      color: var(--em-on-primary-container);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 6px 16px;
+      border-radius: var(--em-radius-full);
+      text-transform: uppercase;
+    }
+    .em-plan-price {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    /* Toggle switch */
+    .em-billing-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background-color: var(--em-surface-lowest);
+      border-radius: var(--em-radius-full);
+      padding: 6px;
+      border: 1px solid var(--em-border);
+    }
+    .em-billing-toggle button {
+      border: none;
+      background: transparent;
+      padding: 8px 20px;
+      border-radius: var(--em-radius-full);
+      font-size: var(--em-fs-label-md);
+      font-weight: 600;
+      color: var(--em-on-surface-variant);
+      transition: background-color var(--em-duration-sm) var(--em-ease), color var(--em-duration-sm) var(--em-ease);
+    }
+    .em-billing-toggle button.is-active {
+      background-color: var(--em-primary-container);
+      color: var(--em-on-primary-container);
+    }
+  </style>
+</head>
+<body>
+
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 p-2 bg-dark text-white rounded" href="#main-content">Skip to main content</a>
+
+  <!-- ==========================================================================
+       NAVBAR
+       ========================================================================== -->
+  <nav class="em-navbar navbar navbar-expand-md py-3" aria-label="Primary">
+    <div class="container-em d-flex align-items-center justify-content-between">
+      <a class="d-flex align-items-center gap-2 navbar-brand m-0" href="index.html">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5Pb0EobuatTsQMDZTx5XgjDW9uTbyJ907jWr3msBRh9Ezd9T4uKU3JIr9r1YYktzOkGW6n9Ji2fBypYG2phL3iJlDqv8UzhbnKXdcLn9ByvvvrpT13YYmp4ZDZFktNeIlXqTxso5eckpXp1oj8GmB-zbbIIyb4-tIf0RodOPqmo3jdZWuZT2cza8roe4fcHZPWK6Rs3nTW2eKBLL3PJneDhGTJzHdVKrRfPlZV-ruCqmR2xg_vOXZ"
+             alt="EduMatrix logo"
+             class="em-navbar__logo" />
+        <span class="em-navbar__brand">EduMatrix</span>
+      </a>
+
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse flex-grow-0" id="primaryNav">
+        <ul class="navbar-nav gap-md-4 mt-3 mt-md-0 align-items-md-center">
+          <li class="nav-item"><a class="em-nav-link nav-link" href="courses.html">Courses</a></li>
+          <li class="nav-item"><a class="em-nav-link nav-link" href="mentors.html">Mentors</a></li>
+          <li class="nav-item"><a class="em-nav-link nav-link active" href="pricing.html" aria-current="page">Pricing</a></li>
+          <li class="nav-item"><a class="em-nav-link nav-link" href="about.html">About</a></li>
+          <li class="nav-item d-md-none mt-3">
+            <a class="btn-em-secondary w-100" href="login.html">Log In</a>
+          </li>
+          <li class="nav-item d-md-none mt-2">
+            <a class="btn-em-primary w-100" href="signup.html">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="d-none d-md-flex align-items-center gap-2">
+        <a href="wishlist.html" class="em-nav-icon-btn" aria-label="Wishlist">
+          <span class="material-symbols-outlined" aria-hidden="true">favorite</span>
+          <span class="em-nav-badge" data-wishlist-count hidden>0</span>
+        </a>
+        <a href="cart.html" class="em-nav-icon-btn" aria-label="Cart">
+          <span class="material-symbols-outlined" aria-hidden="true">shopping_bag</span>
+          <span class="em-nav-badge" data-cart-count hidden>0</span>
+        </a>
+        <div class="d-flex align-items-center gap-2 ms-2" data-nav-auth-area>
+          <a class="btn-em-secondary" href="login.html">Log In</a>
+          <a class="btn-em-primary" href="signup.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <div class="container-em">
+
+      <section class="pt-5 pb-4 text-center">
+        <h1 class="text-headline-lg mb-2">Simple, Transparent Pricing</h1>
+        <p class="text-body-lg text-muted-em mb-4" style="max-width: 36rem; margin-inline: auto;">Start free. Upgrade when you're ready for unlimited access.</p>
+
+        <div class="em-billing-toggle" role="group" aria-label="Billing period">
+          <button type="button" id="monthlyToggleBtn" class="is-active">Monthly</button>
+          <button type="button" id="yearlyToggleBtn">Yearly <span style="opacity: 0.8;">(save 20%)</span></button>
+        </div>
+      </section>
+
+      <section class="pb-5">
+        <div class="row g-4 justify-content-center">
+
+          <!-- Free -->
+          <div class="col-12 col-lg-4">
+            <div class="em-plan-card shadow-em-1">
+              <h2 class="text-headline-md mb-2">Free</h2>
+              <p class="text-body-md text-muted-em mb-4">Explore the platform at your own pace.</p>
+              <p class="em-plan-price mb-1">$0</p>
+              <p class="text-caption text-muted-em mb-4">forever</p>
+              <ul class="list-unstyled d-flex flex-column gap-3 mb-4 flex-grow-1">
+                <li class="d-flex gap-2 text-body-md"><span class="material-symbols-outlined" style="color: var(--em-primary);" aria-hidden="true">check</span> Browse the full course catalog</li>
+                <li class="d-flex gap-2 text-body-md"><span class="material-symbols-outlined" style="color: var(--em-primary);" aria-hidden="true">check</span> Purchase individual courses</li>
+                <li class="d-flex gap-2 text-body-md"><span class="material-symbols-outlined" style="color: var(--em-primary);" aria-hidden="true">check</span> Community support</li>
+              </ul>
+              <a href="signup.html" class="btn-em-secondary w-100">Get Started</a>
+            </div>
+          </div>
+
+          <!-- Pro (featured) -->
+          <div class="col-12 col-lg-4">
+            <div class="em-plan-card em-plan-card--featured">
+              <span class="em-plan-card__badge">Most Popular</span>
+              <h2 class="text-headline-md mb-2">Pro</h2>
+              <p class="text-body-md text-muted-em mb-4">Unlimited access to every course on EduMatrix.</p>
+              <p class="em-plan-price mb-1"><span id="proPrice">$29</span><span class="text-body-md text-muted-em">/mo</span></p>
+              <p class="text-caption text-muted-em mb-4" id="proBillingNote">billed monthly</p>
+              <ul class="list-unstyled d-flex flex-column gap-3 mb-4 flex-grow-1">
+                <li class="d-flex gap-2 text-body-md"><span class="material-symbols-outlined" style="color: var(--em-primary);" aria-hidden="true">check</span> Unlimited access to all courses</li>
+                <li class="d-flex gap-2 text-body-md"><span class="material-symbols-outlined" style="color: var(--em-primary);" aria-hidden="true">check</span> Certificates of completion</li>
+                <li class="d-flex gap-2 text-body-md"><span class="material-symbols-outlined" style="color: var(--em-primary);" aria-hidden="true">check</span> Downloadable resources</li>
+                <li class="d-flex gap-2 text-body-md"><span class="material-symbols-outlined" style="color: var(--em-primary);" aria-hidden="true">check</span> Priority support</li>
+              </ul>
+              <a href="signup.html" class="btn-em-primary w-100">Start Pro</a>
+            </div>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="col-12 col-lg-4">
+            <div class="em-plan-card shadow-em-1">
+              <h2 class="text-headline-md mb-2">Enterprise</h2>
+              <p class="text-body-md text-muted-em mb-4">For teams building skills at scale.</p>
+              <p class="em-plan-price mb-1">Custom</p>
+              <p class="text-caption text-muted-em mb-4">talk to our team</p>
+              <ul class="list-unstyled d-flex flex-column gap-3 mb-4 flex-grow-1">
+                <li class="d-flex gap-2 text-body-md"><span class="material-symbols-outlined" style="color: var(--em-primary);" aria-hidden="true">check</span> Everything in Pro</li>
+                <li class="d-flex gap-2 text-body-md"><span class="material-symbols-outlined" style="color: var(--em-primary);" aria-hidden="true">check</span> Team seats & admin dashboard</li>
+                <li class="d-flex gap-2 text-body-md"><span class="material-symbols-outlined" style="color: var(--em-primary);" aria-hidden="true">check</span> Dedicated account manager</li>
+                <li class="d-flex gap-2 text-body-md"><span class="material-symbols-outlined" style="color: var(--em-primary);" aria-hidden="true">check</span> Custom learning paths</li>
+              </ul>
+              <a href="#" class="btn-em-secondary w-100">Contact Sales</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="pb-5" style="max-width: 46rem; margin-inline: auto;">
+        <h2 class="text-headline-md mb-4 text-center">Pricing Questions</h2>
+        <div class="accordion em-accordion">
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#pricingFaq1">Can I cancel Pro anytime?</button>
+            </h3>
+            <div id="pricingFaq1" class="accordion-collapse collapse show" data-bs-parent=".em-accordion">
+              <div class="accordion-body pt-0 text-muted-em">Yes. Pro is billed monthly or yearly with no long-term contract, and you can cancel from your account settings at any time.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pricingFaq2">Do I need Pro to buy a single course?</button>
+            </h3>
+            <div id="pricingFaq2" class="accordion-collapse collapse" data-bs-parent=".em-accordion">
+              <div class="accordion-body pt-0 text-muted-em">No — the Free plan lets you purchase and keep any individual course. Pro is for learners who want unlimited access to the entire catalog.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="em-footer">
+    <div class="container-em section-em">
+      <div class="row g-5">
+        <div class="col-12 col-md-3">
+          <a href="index.html" class="d-flex align-items-center gap-2 text-decoration-none mb-3">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5Pb0EobuatTsQMDZTx5XgjDW9uTbyJ907jWr3msBRh9Ezd9T4uKU3JIr9r1YYktzOkGW6n9Ji2fBypYG2phL3iJlDqv8UzhbnKXdcLn9ByvvvrpT13YYmp4ZDZFktNeIlXqTxso5eckpXp1oj8GmB-zbbIIyb4-tIf0RodOPqmo3jdZWuZT2cza8roe4fcHZPWK6Rs3nTW2eKBLL3PJneDhGTJzHdVKrRfPlZV-ruCqmR2xg_vOXZ"
+                 alt="EduMatrix logo"
+                 style="width: 32px; height: 32px; border-radius: var(--em-radius-sm); filter: grayscale(1); opacity: 0.8;" />
+            <span class="text-headline-md" style="color: var(--em-on-surface);">EduMatrix</span>
+          </a>
+          <p class="text-caption text-muted-em m-0">© 2026 EduMatrix. Editorial Excellence in Learning.</p>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <h4 class="em-footer__heading">Platform</h4>
+          <ul class="list-unstyled d-flex flex-column gap-2 mt-3">
+            <li><a class="em-footer__link" href="courses.html">Learn</a></li>
+            <li><a class="em-footer__link" href="blog.html">Resources</a></li>
+            <li><a class="em-footer__link" href="instructor-dashboard.html">Business</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <h4 class="em-footer__heading">Legal</h4>
+          <ul class="list-unstyled d-flex flex-column gap-2 mt-3">
+            <li><a class="em-footer__link" href="#">Privacy Policy</a></li>
+            <li><a class="em-footer__link" href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <h4 class="em-footer__heading">Support</h4>
+          <ul class="list-unstyled d-flex flex-column gap-2 mt-3">
+            <li><a class="em-footer__link" href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/pricing.js"></script>
+</body>
+</html>

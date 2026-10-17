@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instructor Dashboard | EduMatrix</title>
+  <meta name="description" content="Manage your courses, track revenue, and view performance on EduMatrix." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .icon-fill {
+      font-variation-settings: 'FILL' 1;
+    }
+  </style>
+</head>
+<body>
+
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 p-2 bg-dark text-white rounded" href="#main-content">Skip to main content</a>
+
+  <!-- ==========================================================================
+       INSTRUCTOR NAVBAR (visually distinct — dark — so instructors always
+       know they're in the business/teaching side of EduMatrix)
+       ========================================================================== -->
+  <nav class="em-navbar em-instructor-nav navbar navbar-expand-md py-3" aria-label="Instructor">
+    <div class="container-em d-flex align-items-center justify-content-between">
+      <a class="d-flex align-items-center gap-2 navbar-brand m-0" href="instructor-dashboard.html">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5Pb0EobuatTsQMDZTx5XgjDW9uTbyJ907jWr3msBRh9Ezd9T4uKU3JIr9r1YYktzOkGW6n9Ji2fBypYG2phL3iJlDqv8UzhbnKXdcLn9ByvvvrpT13YYmp4ZDZFktNeIlXqTxso5eckpXp1oj8GmB-zbbIIyb4-tIf0RodOPqmo3jdZWuZT2cza8roe4fcHZPWK6Rs3nTW2eKBLL3PJneDhGTJzHdVKrRfPlZV-ruCqmR2xg_vOXZ"
+             alt="EduMatrix logo"
+             class="em-navbar__logo" />
+        <span class="em-navbar__brand">EduMatrix</span>
+        <span class="text-caption" style="background-color: var(--em-primary-container); color: var(--em-on-primary-container); padding: 2px 8px; border-radius: var(--em-radius-full); font-weight: 700;">INSTRUCTOR</span>
+      </a>
+
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse flex-grow-0" id="primaryNav">
+        <ul class="navbar-nav gap-md-4 mt-3 mt-md-0 align-items-md-center">
+          <li class="nav-item"><a class="em-nav-link nav-link active" href="instructor-dashboard.html" aria-current="page">Dashboard</a></li>
+          <li class="nav-item"><a class="em-nav-link nav-link" href="instructor-courses.html">My Courses</a></li>
+          <li class="nav-item"><a class="em-nav-link nav-link" href="create-course.html">Create Course</a></li>
+          <li class="nav-item"><a class="em-nav-link nav-link" href="instructor-analytics.html">Analytics</a></li>
+          <li class="nav-item"><a class="em-nav-link nav-link" href="instructor-earnings.html">Earnings</a></li>
+        </ul>
+      </div>
+
+      <a href="index.html" class="text-label-md d-none d-md-inline-flex align-items-center gap-1" style="color: var(--em-inverse-on-surface); opacity: 0.8;">
+        <span class="material-symbols-outlined" style="font-size: 18px;" aria-hidden="true">logout</span>
+        Exit to Student View
+      </a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <div class="container-em">
+
+      <section class="pt-5 pb-4">
+        <h1 class="text-headline-lg mb-1">Instructor Dashboard</h1>
+        <p class="text-body-md text-muted-em m-0">Here's how your courses are performing.</p>
+      </section>
+
+      <!-- Stats -->
+      <section class="pb-5">
+        <div class="row g-3">
+          <div class="col-6 col-lg-3">
+            <div class="em-stat-tile">
+              <div class="em-stat-tile__icon"><span class="material-symbols-outlined icon-fill" aria-hidden="true">payments</span></div>
+              <div>
+                <p class="text-headline-md m-0" id="statRevenue">$0</p>
+                <p class="text-caption text-muted-em m-0">Total Revenue</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="em-stat-tile">
+              <div class="em-stat-tile__icon"><span class="material-symbols-outlined icon-fill" aria-hidden="true">groups</span></div>
+              <div>
+                <p class="text-headline-md m-0" id="statStudents">0</p>
+                <p class="text-caption text-muted-em m-0">Total Students</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="em-stat-tile">
+              <div class="em-stat-tile__icon"><span class="material-symbols-outlined icon-fill" aria-hidden="true">library_books</span></div>
+              <div>
+                <p class="text-headline-md m-0" id="statCourses">0</p>
+                <p class="text-caption text-muted-em m-0">Published Courses</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="em-stat-tile">
+              <div class="em-stat-tile__icon"><span class="material-symbols-outlined icon-fill" aria-hidden="true">star</span></div>
+              <div>
+                <p class="text-headline-md m-0" id="statRating">0.0</p>
+                <p class="text-caption text-muted-em m-0">Average Rating</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="row g-5 pb-5">
+        <!-- Revenue chart -->
+        <div class="col-12 col-lg-7">
+          <div class="shadow-em-1 rounded-4 p-4 h-100" style="border-radius: var(--em-radius-xl);">
+            <h2 class="text-headline-md mb-4" style="font-size: 18px;">Revenue, Last 6 Months</h2>
+            <div class="em-bar-chart" id="revenueChart"></div>
+          </div>
+        </div>
+
+        <!-- Recent activity -->
+        <div class="col-12 col-lg-5">
+          <div class="shadow-em-1 rounded-4 p-4 h-100" style="border-radius: var(--em-radius-xl);">
+            <h2 class="text-headline-md mb-4" style="font-size: 18px;">Recent Activity</h2>
+            <ul class="list-unstyled d-flex flex-column m-0" id="instructorActivityList"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <section class="pb-5">
+        <h2 class="text-headline-md mb-3">Quick Actions</h2>
+        <div class="row g-3">
+          <div class="col-6 col-lg-3">
+            <a href="create-course.html" class="btn-em-primary w-100">+ New Course</a>
+          </div>
+          <div class="col-6 col-lg-3">
+            <a href="instructor-courses.html" class="btn-em-secondary w-100">Manage Courses</a>
+          </div>
+          <div class="col-6 col-lg-3">
+            <a href="instructor-analytics.html" class="btn-em-secondary w-100">View Analytics</a>
+          </div>
+          <div class="col-6 col-lg-3">
+            <a href="instructor-earnings.html" class="btn-em-secondary w-100">View Earnings</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/courses-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/instructor-data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/instructor-dashboard.js"></script>
+</body>
+</html>
